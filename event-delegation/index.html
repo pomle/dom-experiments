@@ -21,12 +21,11 @@
       }];
 
       document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
-        matchers.forEach((matcher) => {
-          const element = e.path.find(matcher.condition);
-          if (element) {
-            matcher.callback(e, element);
+        for (let node, i = matchers.length; i--;) {
+          if (node = e.path.find(matchers[i].condition)) {
+            matchers[i].callback(e, node);
           }
-        });
+        };
       });
     </script>
   </body>
